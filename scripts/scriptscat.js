@@ -18,12 +18,29 @@
             });
         });
 
-  $(document).ready(function () {
-            $("form[id*=search] input").click(function () {
-                //alert($(this).html()); // gets innerHTML of clicked li
-                var author = $(this).text();
-               $.post('./include/search.php', {author: author}, function(data){
-                $('div#maincontent').html(data);
-                 });
-            });
-        });
+$(function() {
+ 
+    $(".search_button").click(function() {
+        var searchString    = $("#keyword").val();
+        var data            = 'keyword='+ searchString;
+         
+        // if searchString is not empty
+        if(searchString) {
+            $.ajax({
+                type: "POST",
+                url: "./include/search.php",
+                data: data,
+                beforeSend: function(html) { // this happens before actual call
+                    $("#results").html(''); 
+                    $("#searchresults").show();
+                    $(".keyword").html(searchString);
+               },
+               success: function(html){ // this happens after we get results
+                    $("#results").show();
+                    $("#results").append(html);
+              }
+            });    
+        }
+        return false;
+    });
+});

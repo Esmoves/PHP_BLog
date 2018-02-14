@@ -1,14 +1,9 @@
 <div class="leftmenu">
 
-<form name="frmSearch" method="POST" action="./include/search.php">
-  <table>
-    <tr>
-      <th>Keyword
-      <input name="search[keyword]" type="text" id="keyword">
-      <input type="submit" value="search"></th>
-    </tr>
-  </table>
-</form>
+  <form method="post" action="search.php" id="searchform">
+    <input name="keyword[keyword]" type="text" id="keyword" class="searchbox" />
+    <input type="submit" value="search" class="search_button" id="search_button" />
+  </form>
 
 	  <h3>Authors</h3>
 	  <ul id="authors" class="lmenu">
@@ -23,8 +18,12 @@
 	   ?>
 	 </ul>
 </div>
- <div class="maincontent" id="maincontent">
-
+ 
+  <div id="searchresults"><h2>Search results: </h2>
+    <ul id="results" class="update">
+    </ul>
+</div>
+<div class="maincontent" id="maincontent">
 <?php
 
 function showbloggers(){

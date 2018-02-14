@@ -1,14 +1,59 @@
 <?php
-	require_once('./connection.php');
-	define("ROW_PER_PAGE",2);
+require_once('./connection.php');
 
-	$search_keyword = '';
-	if(!empty($_POST['search']['keyword'])) {
-		$search_keyword = $_POST['search']['keyword'];
-	
+if (isset($_POST['keyword'])) {
+	global $db;
+    $keyword = htmlentities($_POST['keyword']);
+    $keywordsql = "%" . $keyword . "%";
+    
+    $sql = "SELECT id, titel, excerp, tekst 
+    FROM blogs 
+    WHERE tekst 
+    LIKE '$keywordsql'
+    OR excerp LIKE '$keywordsql'
+    ORDER BY titel LIMIT 20";    
+    // get results
+  //  $sth = $db->prepare($sql);
+  //  $sth->execute();
+    $end_result = '';
+    foreach($db->query($sql) as $row){ 
+        $result = $row['titel'];
+        $link = "<a href='./blog.php?blog=" .$row['id']. "'>";
+        // we will use this to bold the search word in result
+        $bold = '<strong>' . $keyword . '</strong>';    
+        $end_result .= '<li>' .$link. str_ireplace($keyword, $bold, $result) . '</a></li>';            
+	 }
+	 echo $end_result;
+	 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+define("ROW_PER_PAGE",10);
+
+$search_keyword = '';
+if(!empty($_POST['search']['keyword'])) {
+	$search_keyword = mysql_real_escape_string($_POST['search']['keyword']);
+	$search_keyword = htmlentities($search_keyword);
+	//searchresult($search_keyword);
+}	
+
+function searchresult ($search_keyword){
+	global $db;
 	$sql = 'SELECT * FROM blogs WHERE titel LIKE :keyword OR excerp LIKE :keyword OR tekst LIKE :keyword ORDER BY id DESC ';
 	
-	/* Pagination Code starts */
+
 	$per_page_html = '';
 	$page = 1;
 	$start=0;
@@ -45,18 +90,19 @@
 		$result = $stmt->fetchAll();
 
 		foreach( $result as $row ) {
+		$link = "<a href='../blog.php?blog=" .$row['id']. "'>";
 		echo "<table class='excerp'><th>Search result</th>";
-		echo "<tr><td>";	
+		echo "<tr><td>";
+		echo $link;	
 		echo $row["titel"];
-		echo "</td><td>";
+		echo "</a></td><td>";
 		echo $row["excerp"];
 		echo "</tr>";
-		echo "</table>";
-		}
+		echo "</table>"
+	;	}
 	} else {
 	echo 'There is nothing to show';
 	}
-
-
 }
+*/
 ?>

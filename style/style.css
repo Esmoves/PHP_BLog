@@ -123,6 +123,7 @@ div.mainmenu{
 
 .leftmenu a:hover{
 	text-decoration: underline;
+	color: #7FD1B9;
 }
 
 
@@ -276,6 +277,40 @@ input[type=submit]{
 }
 .inputform textarea{
 	width: 100%;
+}
+
+/* searchfunction */
+#searchform{
+	margin: 10px;
+}
+.searchbox{
+	padding: 2px;
+}
+
+#search_button{
+	width: 108px;
+}
+
+#searchresults { 
+	display:none; 
+	margin-left: 120px;
+}
+
+#searchresults h2{
+	margin-bottom: 10px;
+	padding-bottom: 0;
+}
+
+ul.update{
+	list-style-type: none;
+	margin: 0 0 0 20px;
+	padding:0;
+}
+
+ul.update li{
+	margin: 15px;
+	padding-left: 50px;
+	border-bottom: 2px double #7A6563;
 }
 
 .footer{
