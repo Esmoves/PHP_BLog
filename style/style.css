@@ -137,7 +137,7 @@ h2{
 	font-family: 'Roboto Mono', monospace;
 	color: #7A6563;
 	padding: 10px 0 10px 20px;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	display: inline-block;
 }
 
@@ -246,6 +246,23 @@ table.comments{
 	background-color: grey;
 	color: black;
 }
+
+form.loginreader{
+	width: 240px;
+	float: left;
+	margin: 0 0 20px 0;
+	padding-left:10px;
+}
+
+.loginreader h3{
+	color: black;
+	font-size: 1em;
+}
+
+.loginreader button{
+	width: 80px;
+}
+
 
 label{
 	border: 1px solid black;

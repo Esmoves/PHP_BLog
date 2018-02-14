@@ -25,7 +25,8 @@ try{
 		$insert->bindParam(':year',$year); 
 		$insert->execute();
 
-		echo "Succes! Please log in to upload a blog";
+		$_SESSION['email']=$email;
+		
 		header('location:index.php#login');
 
 	}elseif(isset($_POST['signin'])){

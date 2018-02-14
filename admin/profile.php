@@ -13,14 +13,13 @@
 		
 		echo "<h2>WELCOME: " .$_SESSION['name'] . "</h2>";
 
-		// button to logout
-		echo '<br /><br /><button style="float:left;"><a href="logout.php">Logout</a></button>';
-		// button to logout
-		echo '<button style="float:left;"><a href="changepass.php">Change Password</a></button>';
-
 		// include buttun to edit or delete specific blogs
 		$useremail = $_SESSION['email'];
 		usersettings($useremail);  
+
+		// button to logout
+		echo '<br /><button style="clear:both;"><a href="changepass.php">Change Password</a></button>';
+
 		require_once ('./include/include_htmlfooter.php');
 	}
 ?>

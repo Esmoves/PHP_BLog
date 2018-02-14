@@ -15,37 +15,7 @@ function getusername($blog_id){
     return $blogger;
 }
 
-
-// ******* Show the blogs of one categorie**********//
-function welcomecategory($categorie_id){
-   global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
-  $sql = "SELECT * FROM categorie WHERE id = $categorie_id";
-  foreach($db->query($sql) as $row) {
-        $categorie = $row['naam'];
-        echo "<h2>All blogs with category: " .$categorie. "</h2>";
-    }
-    unset($row);
-  }
-
-function showblogsbycategorie($categorie_id){
- global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
-  $sql = "SELECT blogs.id AS blog_id, categorie.id FROM blogs
-  INNER JOIN categorie 
-  ON blogs.category = categorie.id
-  WHERE categorie.id = '$categorie_id'
-  ORDER BY blogs.id DESC";
-
-  foreach($db->query($sql) as $row) {
-        $blog_id = $row['blog_id'];
-          getOneBlogFromDB($blog_id);
-    }
-    unset($row);
-}
-
-
-
-
-//**** INDEX.php **************//
+//**** INDEX **************//
 // **  get all blogs sorted on newest first *******//
 
 
@@ -106,7 +76,7 @@ global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
 }
 
 function getBloggerbyBlogid($user_id){
-  global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+  global $db;
 
   $sql = "SELECT * FROM bloggers WHERE id='$user_id'";
   foreach($db->query($sql) as $row) {
@@ -117,7 +87,7 @@ function getBloggerbyBlogid($user_id){
 }
 
 function getCategory($blog_id){
-   global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+   global $db;
     $sql = "SELECT * FROM categorie 
     INNER JOIN connectcatwithblog
     ON categorie.id = connectcatwithblog.categorie_id
@@ -166,10 +136,12 @@ function getOneBlogFromDB($blog_id){
     global $db;
     echo "<table class='comments'>";
     
-    $sql="SELECT c.comment, b.closed
+    $sql="SELECT c.comment, b.closed, r.name
     FROM comments c
     INNER JOIN blogs b 
     ON b.id = c.blog_id
+    INNER JOIN readers r
+    ON c.reader_id = r.id
     WHERE b.id= '$blog_id'
     AND c.deleted = 'false'";     
     $sth = $db->prepare($sql);
@@ -182,36 +154,14 @@ function getOneBlogFromDB($blog_id){
     else{
       // get the comments in a row
       foreach($db->query($sql) as $row) {
-        echo "<tr><td>Comment</td>";
+        echo "<tr><td>".$row['name']."</td>";
         echo "<td>" .$row['comment']. "</td></tr>";
       }
       echo "</table>";
       unset($row); 
-      // show the form 
-      echo "<br />";
-      echo '<form action="blog.php" method="post" name="comment" class="inputform">';
-      echo '<label for="comment">Send us your comment</label><br>';
-      echo '<input type="hidden" name="blog_id" value="' .$blog_id. '" />';
-      echo '<textarea class="excerp" type="text" name="comment"></textarea><br />';
-      echo '<input type="submit" name="submit" value="send" />'; 
-    }
+     }
       
   }
-
-
-// INSERT a new comment to the DB
-function insertcomment(){
-   global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
-   $comment = htmlspecialchars($_POST['comment']);
-   $blog_id = $_POST['blog_id'];
-
-   $sql = "INSERT INTO comments ( blog_id, comment ) VALUES ( :blog_id, :comment)";
-   $query = $db->prepare( $sql );
-   $query->execute( array( ':blog_id'=>$blog_id, ':comment'=>$comment )); 
-
-   header('location:blog.php?blog='.$blog_id.'');
-
-}
 
 
 

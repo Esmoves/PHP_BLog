@@ -3,7 +3,8 @@ try{
   require_once ('./include/connection.php');
   require_once ('./include/include_admin.php');
   require_once ('./include/include_blogs.php');
-  if(isset($_SESSION["email"]))  
+
+  if(isset($_SESSION['email']))  
      {  
      
       require_once ('./include/include_htmlheader_admin.php');
@@ -23,7 +24,7 @@ try{
 
     }else{    // if not logged in go to login page
       // header("location:index.php"); 
-      echo $_SESSION["email"];
+      echo $_SESSION['email'];
      }  
 }
 catch(PDOException $e)

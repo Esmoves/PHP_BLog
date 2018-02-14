@@ -19,7 +19,6 @@
         });
 
 $(function() {
- 
     $(".search_button").click(function() {
         var searchString    = $("#keyword").val();
         var data            = 'keyword='+ searchString;
