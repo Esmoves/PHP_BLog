@@ -11,9 +11,9 @@ function getuserid(){
       return $user_id;  
 }
     
-function usersettings($useremail){ 
+function usersettings($user){ 
 global $db;
-$sql = "SELECT * FROM bloggers WHERE email = '$useremail'";
+$sql = "SELECT * FROM bloggers WHERE username = '$user'";
 //// return first row
 $sth = $db->prepare($sql);
 $sth->execute();

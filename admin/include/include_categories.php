@@ -19,11 +19,14 @@ function managecategories(){
 }
 
 function deletecat($cat_id){
-  global $db;
-  $sql = "DELETE FROM categorie WHERE id = '$cat_id'";
-  $stmt = $db->prepare($sql);
-  if ($stmt->execute()){
-      header('location:./categories.php');
+  if (confirm("Weet u zeker dat u de categorie wilt verwijderen?"))
+    {
+      global $db;
+      $sql = "DELETE FROM categorie WHERE id = '$cat_id'";
+      $stmt = $db->prepare($sql);
+      if ($stmt->execute()){
+          header('location:./categories.php');
+      }
     }
  }
 

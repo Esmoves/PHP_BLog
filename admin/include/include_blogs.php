@@ -48,10 +48,13 @@ function editmyblog($blog_id){
 
 // Delete a blog //
 function deleteblog($blog_id){
-  global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
-  $sql = "DELETE FROM blogs WHERE id = '$blog_id'";
-  $stmt = $db->prepare($sql);
-  $stmt->execute();
+  if (confirm("Weet u zeker dat u deze blog wilt verwijderen?"))
+    {
+      global $db;
+      $sql = "DELETE FROM blogs WHERE id = '$blog_id'";
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
+    }
 }
 
 

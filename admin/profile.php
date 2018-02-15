@@ -1,6 +1,6 @@
 <?php
 	require_once ('./include/connection.php');
-	if(empty($_SESSION['email']))
+	if(empty($_SESSION['name']))
 	{
 	 header("location:index.php");
 
@@ -14,8 +14,8 @@
 		echo "<h2>WELCOME: " .$_SESSION['name'] . "</h2>";
 
 		// include buttun to edit or delete specific blogs
-		$useremail = $_SESSION['email'];
-		usersettings($useremail);  
+		$user = $_SESSION['name'];
+		usersettings($user);  
 
 		// button to logout
 		echo '<br /><button style="clear:both;"><a href="changepass.php">Change Password</a></button>';

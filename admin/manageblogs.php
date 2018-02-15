@@ -23,8 +23,7 @@ try{
       }
 
     }else{    // if not logged in go to login page
-      // header("location:index.php"); 
-      echo $_SESSION['email'];
+      header("location:index.php"); 
      }  
 }
 catch(PDOException $e)

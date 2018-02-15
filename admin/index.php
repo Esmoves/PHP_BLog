@@ -4,19 +4,21 @@ try{
     require_once ('./include/include_htmlheader_admin.php');
 
 	if(isset($_POST['signup'])){
-		 $username = $_POST['username'];
-		 $firstname = $_POST['firstname'];
-		 $lastname = $_POST['lastname'];
-		 $email = $_POST['email'];
-		 $pass = $_POST['password'];
-		 $month = $_POST['month'];
-		 $date = $_POST['date'];
-		 $year = $_POST['year'];
-	 
+		$username = $_POST['username'];
+		$firstname = $_POST['firstname'];
+		$lastname = $_POST['lastname'];
+		$email = $_POST['email'];
+		$month = $_POST['month'];
+		$date = $_POST['date'];
+		$year = $_POST['year'];
+
+		// @param string Secure the password with a hash, than save it to database.
+		$pass = $_POST['password'];
+		$hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 	 	$insert = $db->prepare("INSERT INTO bloggers (username, password, email, lastname, firstname, date, month, year)
 			VALUES(:username, :password, :email, :lastname, :firstname, :date, :month, :year) ");
 		$insert->bindParam(':username',$username);
-		$insert->bindParam(':password',$pass);
+		$insert->bindParam(':password',$hashed_password);
 		$insert->bindParam(':email',$email);
 		$insert->bindParam(':lastname',$lastname);
 		$insert->bindParam(':firstname',$firstname);
@@ -25,28 +27,32 @@ try{
 		$insert->bindParam(':year',$year); 
 		$insert->execute();
 
-		$_SESSION['email']=$email;
-		
-		header('location:index.php#login');
+		$_SESSION['name']=$username;
 
+		header('location:profile.php');
+
+		// Validate the login form, start a session with the username as $_SESSION['name']
 	}elseif(isset($_POST['signin'])){
-		 $email = $_POST['email'];
-		 $pass = $_POST['pass'];
-		 $select = $db->prepare("SELECT * FROM bloggers WHERE email='$email' AND password='$pass'");
-		 $select->setFetchMode(PDO::FETCH_ASSOC);
-		 $select->execute();
-		 $data=$select->fetch();
-		 if($data['email']!=$email AND $data['password']!=$pass)
+		$name = $_POST['name'];
+		$pass = $_POST['pass'];
+
+		$select = $db->prepare("SELECT * FROM bloggers WHERE username = '$name'");
+		$select->setFetchMode(PDO::FETCH_ASSOC);
+		$select->execute();
+		$data=$select->fetch();
+ 		// Verifies the password against the (database-) stored password's hash or returns $checkpassword set to either true or false
+		$hashed_password_db = $data['password'];
+
+		if( password_verify ( $pass, $hashed_password_db ) )
 		 {
-		  	echo "<script>alert(invalid email or password')</script>";
-		 }
-		 elseif($data['email']==$email AND $data['password']==$pass)
-		 {
-			$_SESSION['email']=$data['email'];
-		    $_SESSION['name']=$data['firstname']. " " . $data['lastname'];
+			$_SESSION['name']=$data['username'];
+		   
 			echo "<script>alert('login succesful')</script>";
 			header("location:profile.php");  
-		 }
+		}
+		else  {
+		 	echo "<script>alert('login failed. Incorrect password or username')</script>";
+		}
  	}
  	elseif(isset($_SESSION["email"])) {
  		echo "<h2>Welcome!</h2>";
@@ -54,19 +60,20 @@ try{
  	} 
  	elseif(!isset($_SESSION["email"])) {
 ?>
+<!-- login form -->
 <div id="login" style="width:500px ; float:right; height:250px;">
 	<div style="padding-left:25px;">
 
 	<h2>Login</h2>
 		<form method="post">
-			<input type="text" name="email" placeholder="example@example.com"><br><br>
+			<input type="text" name="name" placeholder="username"><br><br>
 			<input type="password" name="pass" placeholder="**********"><br><br>
 			<input type="submit" name="signin" value="SIGN IN">
 		</form>
 	</div>
 </div>
 
-
+<!-- Register form -->
 <div style="width:500px ; height:600px; float:left;">
 	<div style="padding-left:25px;">
 
