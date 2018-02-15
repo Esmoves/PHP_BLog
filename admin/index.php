@@ -54,7 +54,7 @@ try{
 		 	echo "<script>alert('login failed. Incorrect password or username')</script>";
 		}
  	}
- 	elseif(isset($_SESSION["email"])) {
+ 	elseif(isset($_SESSION["name"])) {
  		echo "<h2>Welcome!</h2>";
  		echo "<p>Please use the navigation on your left to upload, edit or delete blogs and comments.</p>";
  	} 
@@ -74,7 +74,7 @@ try{
 </div>
 
 <!-- Register form -->
-<div style="width:500px ; height:600px; float:left;">
+<div style="width:500px ; float:left;">
 	<div style="padding-left:25px;">
 
 		<h2>Create An Account</h2>
@@ -121,6 +121,11 @@ try{
 	</div>
 </div>
 
+ <!-- show button to reset password -->
+ <div style="margin-bottom: 80px;">
+    <h3 style="color:black; margin: 50px 0 10px 20px; ">Forgot your password? Get a new one!</h3>
+    <button style="margin-left: 20px;"><a href="passwordrecovery.php">Reset Password</a></button>
+</div>
 <?php 
 	}
 } catch(PDOException $e) {

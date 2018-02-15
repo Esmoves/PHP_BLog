@@ -5,7 +5,7 @@ try{
   require_once ('./include/include_blogs.php');
   require_once ('./include/include_htmlheader_admin.php');
   
-  if(isset($_SESSION["email"]))  
+  if(isset($_SESSION["name"]))  
     {  
 
   // if not empyt post do not empty get

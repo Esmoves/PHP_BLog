@@ -7,7 +7,7 @@
   require_once ('./include/include_categories.php');
   require_once ('./include/include_htmlheader_admin.php');
   
-  if(isset($_SESSION["email"])){  	
+  if(isset($_SESSION["name"])){  	
     	if(!empty($_GET['cat'])){
 			$cat_id = $_GET['cat'];
 			deletecat($cat_id);

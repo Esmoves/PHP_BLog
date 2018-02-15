@@ -2,7 +2,7 @@
 
 // show all blogs with options to edit or delete blogs//
 // show if blog has comments //
-function manageblogs($useremail){
+function manageblogs($user){
   global $db;
   echo "<table class='excerp'>";
   echo "<th colspan='4'>Manage your blogs</th>";
@@ -11,7 +11,7 @@ function manageblogs($useremail){
   FROM blogs b
   INNER JOIN bloggers a 
   ON b.user_id = a.id 
-  WHERE a.email = '$useremail'
+  WHERE a.username = '$user'
   ORDER BY b.id DESC";
   $db->query($sql);
   foreach($db->query($sql) as $row) {

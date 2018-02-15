@@ -5,13 +5,13 @@
   require_once ('./include/include_blogs.php');
   require_once ('./include/include_htmlheader_admin.php');
   
-  if(isset($_SESSION["email"]))  
+  if(isset($_SESSION["name"]))  
     {  
       if ( empty( $_POST['newblog'] ) ){ 
         // get user_id
         $user_id=getuserid();
         $blogger=getBlogger($user_id);
-        echo "<h2>Upload as " .$blogger. " </h2>";  
+        echo "<h2>Upload as " .$_SESSION["name"]. " </h2>";  
 ?>
         <form id="newblog" class="newblog" name="newblog" enctype="multipart/form-data" action="./newblog.php" method="post">
           <label for="titel">Titel</label><br />

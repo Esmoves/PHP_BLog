@@ -7,7 +7,7 @@
     require_once('./include/include_htmlheader_admin.php');
 
 try {
-  if(isset($_SESSION["email"])) {  
+  if(isset($_SESSION["name"])) {  
      // check if a comment is deleted
       if(!empty($_GET['action']) ){
         if($_GET['action'] == 'delete' && !empty($_GET['comment'])){ 

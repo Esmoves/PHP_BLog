@@ -30,6 +30,14 @@
           <ul class="mainmenu">
             <li><a href="index.php">home</a></li>
             <li><a href="./admin/index.php">Admin</a></li>
+            <?php 
+             if (!empty($_SESSION['reader_name'])){
+              echo "<li><a href='./include/logout.php'>logout reader</a></li>";
+             }
+             else{
+              echo "<li><a href='./loginreader.php'>login as reader</a></li>";
+             }
+             ?>
           </ul>
           <h1>BLOG App</h1>
         </div>  

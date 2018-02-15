@@ -4,7 +4,7 @@ try{
   require_once ('./include/include_admin.php');
   require_once ('./include/include_blogs.php');
 
-  if(isset($_SESSION['email']))  
+  if(isset($_SESSION['name']))  
      {  
      
       require_once ('./include/include_htmlheader_admin.php');
@@ -12,11 +12,10 @@ try{
       if ( empty($_POST['submit']) || empty($_GET['cat']))
       {
           $user = $_SESSION['name'];
-          $useremail = $_SESSION['email'];
           echo '<h2>Welcome - '.$user.'</h2>';  
           // show titels of all blogs by user
           // include buttun to edit or delete specific blogs
-          manageblogs($useremail);  
+          manageblogs($user);  
 
          // button to logout
           echo '<br /><br /><button><a href="logout.php">Logout</a></button>';    

@@ -2,8 +2,8 @@
 
 function getuserid(){
     global $db;
-    $useremail = $_SESSION['email'];
-    $sql = "SELECT * FROM bloggers WHERE email = '$useremail'";
+    $username = $_SESSION['name'];
+    $sql = "SELECT * FROM bloggers WHERE username = '$username'";
     $sth = $db->prepare($sql);
     $sth->execute();
     $row = $sth->fetch(PDO::FETCH_ASSOC);
