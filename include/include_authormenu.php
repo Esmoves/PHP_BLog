@@ -22,7 +22,10 @@ function welcomeblogger($author_name){
 
 function showblogsbyblogger($blogger_id){
  global $db;
-  $sql = "SELECT * FROM blogs WHERE user_id = $blogger_id ORDER BY id DESC LIMIT 10";
+  $sql = "SELECT * FROM blogs 
+  WHERE user_id = $blogger_id 
+  ORDER BY id DESC 
+  LIMIT 20";
   foreach($db->query($sql) as $row) {
         $blog_id= $row['id'];
         $link = "<a href='./blog.php?blog=" .$blog_id. "''>";

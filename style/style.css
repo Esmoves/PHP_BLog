@@ -72,9 +72,8 @@ div.mainmenu{
 	clear: left;
 	background-color: #7A6563;
 	color: white;
-	margin-top: 10px;
+	margin: 10px 10px 0 0;
 	border: 2px solid darkgrey;
-	margin-right: 10px;
 }
 
 .leftmenu h3{
@@ -82,18 +81,16 @@ div.mainmenu{
 	text-decoration: underline;
 	margin: 20px 0 0 20px;
 	padding: 0;
+	font-size: 0.9em;
 }
 
 .leftmenu form{
-	width: 130px;
+	width: 125px;
 	margin: 0;
 }
 
 .leftmenu th{
 	background-color: #7A6563;
-	width: 130px;
-	margin: 0;
-	padding:0;
 }
 .leftmenu td{
 	background-color: #7A6563;
@@ -108,12 +105,13 @@ div.mainmenu{
 
 .leftmenu ul{
 	list-style-type: none;
+	margin: 0;
 }
 
 .leftmenu li{
 	font-variant: small-caps;
 	margin: 0 0 0 -20px;
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 .leftmenu a{

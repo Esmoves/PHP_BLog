@@ -64,10 +64,11 @@ function upload(){
   $titel= $_POST['titel'];
   $tekst= $_POST['tekst'];
   $excerp= $_POST['excerp'];
+  $date = GetDate();
 
   // get user_id
-  $useremail = $_SESSION['email'];
-  $sql_user = "SELECT * FROM bloggers WHERE email = '$useremail'";
+  $username = $_SESSION['name'];
+  $sql_user = "SELECT * FROM bloggers WHERE username = '$username'";
   foreach($db->query($sql_user) as $user){
     $user_id = $user['id'];
   }  
@@ -102,9 +103,9 @@ function upload(){
     else $userpic = "";
    
     // start the actual upload section
-    $sql = "INSERT INTO blogs ( user_id, titel, tekst, id_hoofdimg, excerp, category ) VALUES ( :user_id, :titel, :tekst, :id_hoofdimg, :excerp, :category)";
+    $sql = "INSERT INTO blogs ( user_id, titel, tekst, id_hoofdimg, excerp, closed ) VALUES ( :user_id, :titel, :tekst, :id_hoofdimg, :excerp, :closed )";
     $query = $db->prepare( $sql );
-    if( $query->execute( array(':user_id'=>$user_id, ':titel'=>$titel, ':tekst'=>$tekst, ':id_hoofdimg'=>$userpic, ':excerp'=>$excerp, 'category'=>'' ) ) )
+    if( $query->execute( array(':user_id'=>$user_id, ':titel'=>$titel, ':tekst'=>$tekst, ':id_hoofdimg'=>$userpic, ':excerp'=>$excerp, 'closed'=>'0') ) )
       {   
         $last_id = $db->lastInsertId();
         foreach($_POST['category'] as $value)

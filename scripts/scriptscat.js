@@ -1,22 +1,24 @@
  $(document).ready(function () {
-            $("ul[id*=myid] li").click(function () {
-                var cat = $(this).text();
-          	   $.post('./include/include_category_menu.php', {cat: cat}, function(data){
-           		$('div#maincontent').html(data);
-                 });
-            });
-        });
+    $("ul[id*=myid] li").click(function () {
+    // set searchresult to hidden  
+      $('div#searchresults').css('display', 'none');
+         var cat = $(this).text();
+  	     $.post('./include/include_category_menu.php', {cat: cat}, function(data){
+   		     $('div#maincontent').html(data);
+         });
+    });
+  });
 
 
   $(document).ready(function () {
-            $("ul[id*=authors] li").click(function () {
-                //alert($(this).html()); // gets innerHTML of clicked li
-                var author = $(this).text();
-               $.post('./include/include_authormenu.php', {author: author}, function(data){
-                $('div#maincontent').html(data);
-                 });
-            });
-        });
+    $("ul[id*=authors] li").click(function () {
+        $('#searchresults').css('display', 'none');  
+        var author = $(this).text();
+        $.post('./include/include_authormenu.php', {author: author}, function(data){
+          $('div#maincontent').html(data);
+          });
+      });
+  });
 
 $(function() {
     $(".search_button").click(function() {
@@ -43,3 +45,14 @@ $(function() {
         return false;
     });
 });
+
+ $(document).ready(function () {
+    $("ul[id*=archief] li").click(function () {
+    // set searchresult to hidden  
+      $('div#searchresults').css('display', 'none');
+         var cat = $(this).text();
+         $.post('./include/include_archief.php', {cat: cat}, function(data){
+           $('div#maincontent').html(data);
+         });
+    });
+  });

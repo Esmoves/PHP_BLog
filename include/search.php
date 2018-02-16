@@ -8,20 +8,25 @@ if (isset($_POST['keyword'])) {
     
     $sql = "SELECT id, titel, excerp, tekst 
     FROM blogs 
-    WHERE tekst 
-    LIKE '$keywordsql'
+    WHERE tekst LIKE '$keywordsql'
+    OR titel LIKE '$keywordsql'
     OR excerp LIKE '$keywordsql'
     ORDER BY titel LIMIT 20";    
-    // get results
-  //  $sth = $db->prepare($sql);
-  //  $sth->execute();
-    $end_result = '';
-    foreach($db->query($sql) as $row){ 
-        $result = $row['titel'];
-        $link = "<a href='./blog.php?blog=" .$row['id']. "'>";
-        // we will use this to bold the search word in result
-        $bold = '<strong>' . $keyword . '</strong>';    
-        $end_result .= '<li>' .$link. str_ireplace($keyword, $bold, $result) . '</a></li>';            
+	
+	$result = $db->query($sql);
+	$row = $result->fetch();
+	if ( ! $row) {
+		$end_result = '<li>Nothing to show.</li>';
+    }
+    else{
+    	$end_result = '';
+    	foreach($db->query($sql) as $row){ 
+	        $result = $row['titel'];
+	        $link = "<a href='./blog.php?blog=" .$row['id']. "'>";
+	        // we will use this to bold the search word in result
+	        $bold = '<strong>' . $keyword . '</strong>';    
+	        $end_result .= '<li>' .$link. str_ireplace($keyword, $bold, $result) . '</a></li>';
+	    }
 	 }
 	 echo $end_result;
 	 } 

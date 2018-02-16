@@ -10,14 +10,20 @@
   unset($row);
 }
 
-function getCategory($category){
-  global $db;
-  $sql = "SELECT * FROM categorie WHERE id='$category'";
-  foreach($db->query($sql) as $row) {
-    $category = $row['naam'];
-    echo $category;
-  }
-  unset($row);
+function getCategory($blog_id){
+   global $db;
+    $sql = "SELECT * FROM categorie 
+    INNER JOIN connectcatwithblog
+    ON categorie.id = connectcatwithblog.categorie_id
+    INNER JOIN blogs
+    ON connectcatwithblog.blog_id = blogs.id
+    WHERE connectcatwithblog.blog_id= '$blog_id'";
+    foreach($db->query($sql) as $row) {
+      $category = $row['naam'];
+      echo $category;
+      echo " || ";
+    }
+    unset($row);
 }
 
 // Get the actual blog
@@ -29,8 +35,9 @@ function getOneBlogFromDB($blog_id){
         echo "<tr><th colspan='1'>" .$row['titel']. "<br />";
         getBloggerbyBlogid($row['user_id']);
         echo "</th</tr>";
+
         echo "<tr><td class='category'>categories: ";
-        getCategory($row['category']);
+        getCategory($row['id']);
         echo "</td></tr>";
 
         if(!empty($row['id_hoofdimg'])){

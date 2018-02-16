@@ -20,9 +20,12 @@ function welcomecategory($categorie_name){
 // get the category
 function showblogsbycategorie($categorie_name){
   global $db;
-  $sql = "SELECT blogs.id AS blog_id, categorie.naam FROM blogs
-  INNER JOIN categorie 
-  ON blogs.category = categorie.id
+  $sql = "SELECT categorie.naam, blogs.id AS blog_id 
+  FROM categorie
+  INNER JOIN connectcatwithblog con
+  ON categorie.id = con.categorie_id  
+  INNER JOIN blogs 
+  ON blogs.id = con.blog_id
   WHERE categorie.naam = '$categorie_name'
   ORDER BY blogs.id DESC";
 

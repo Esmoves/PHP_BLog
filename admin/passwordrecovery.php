@@ -39,20 +39,25 @@ try{
 		$sql = "UPDATE bloggers SET password = '$pass_hash' WHERE email = '$email'";
 		$query = $db->prepare( $sql );
 		if( $query->execute()) {
-		// if insert is succesful, send email with new password
-		$to = $email;
-		$subject = "Your password has been reset for your blog";
-		$txt = "Hi!\nYour password has been reset for the blog\n Your new password is" .$newpass. "\nPlease visit www.wijzijncodegorilla.nl/esmeraldatijhoff/blog to login\n Greetings from the IT team of Tijhoff inc!";
-		$headers = "From: esmeraldatijhoff@yahoo.com" . "\r\n";
-		// send email
-		mail($to, $subject, $txt, $headers);
-
-	 }
-
-
+			// if insert is succesful, send email with new password
+			$to = $email;
+			$from = "esmeraldatijhoff@yahoo.com";
+			$subject = "Your password has been reset for your blog";
+			$txt = "Hi!\nYour password has been reset for the blog\n Your new password is" .$newpass. "\nPlease visit www.wijzijncodegorilla.nl/esmeraldatijhoff/blog to login\n Greetings from the IT team of Tijhoff inc!";
+			$headers = "From: $from\r\n";
+			// send email
+			echo $newpass;
+		/*	if(mail($to, $subject, $txt, $headers)){
+				echo "A message with your new password has been send to your email account.";
+			}
+			else{
+				echo "Sorry, email could not be send.";
+			}
+			*/
+	 	}
 	  }
 	  else{
-	  	echo "Email is unknown";
+	  	echo "Email address is unknown";
 	  }
 	}
 	// if no form has been send, show forms

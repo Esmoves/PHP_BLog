@@ -1,7 +1,7 @@
 <?php
 
 function getusername($blog_id){
-   global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+   global $db;
     $sql = "SELECT *, blogs.id 
     FROM blogs 
     JOIN bloggers
@@ -20,7 +20,7 @@ function getusername($blog_id){
 
 
 function getAllBlogsFromDB(){
- global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+ global $db;
   $sql = "SELECT *, blogs.id AS bid 
   FROM blogs
   INNER JOIN bloggers
@@ -64,7 +64,7 @@ function getAllBlogsFromDB(){
 
 
 function getUserId_foroneblog(){
-global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+global $db;
     $sql = "SELECT * FROM bloggers";
     foreach($db->query($sql) as $row){
       $user_id = $row['id'];
@@ -104,7 +104,7 @@ function getCategory($blog_id){
 
 // Get the actual blog
 function getOneBlogFromDB($blog_id){
- global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+ global $db;
 
   $sql = "SELECT * FROM blogs WHERE id='$blog_id'";
   foreach($db->query($sql) as $row) {
@@ -163,7 +163,7 @@ function getOneBlogFromDB($blog_id){
       
   }
 
-
+?>
 
 
 

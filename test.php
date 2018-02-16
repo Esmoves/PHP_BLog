@@ -1,6 +1,10 @@
 <?php
 // See the password_hash() example to see where this came from.
 
+ $date = GetDate();
+  print_r($date);
+
+
 $pass = 'password';
 $hash = password_hash($pass, PASSWORD_DEFAULT);
 

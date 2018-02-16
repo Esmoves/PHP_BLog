@@ -66,3 +66,15 @@ ADD reader_id VARCHAR (255) NOT NULL;
 ALTER TABLE comments 
 ADD FOREIGN KEY (reader_id)
 REFERENCES readers(id);
+
+
+SELECT	userName, HASHBYTES('MD5', CAST(password AS NVARCHAR(4000))) [HashedPasswd], 
+email, lastname, firstname, date, month, year 
+INTO	bloggers_Hashed
+FROM	bloggers
+
+SELECT * FROM bloggers_Hashed
+
+
+username: admin
+ww:  IkvbAkc4
