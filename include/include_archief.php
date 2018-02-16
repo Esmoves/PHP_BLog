@@ -4,7 +4,7 @@ if(isset($_POST['archief'])){
 $categorie_name = $_POST['archief'];
 
 require_once('connection.php');
-require_once('include_oneblog.php');
+require_once('include_reader.php');
 
 
 // get the month

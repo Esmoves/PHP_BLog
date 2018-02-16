@@ -50,9 +50,9 @@ $(function() {
     $("ul[id*=archief] li").click(function () {
     // set searchresult to hidden  
       $('div#searchresults').css('display', 'none');
-         var cat = $(this).text();
-         $.post('./include/include_archief.php', {cat: cat}, function(data){
-           $('div#maincontent').html(data);
-         });
+      var cat = $(this).text();
+      $.post('./include/include_archief.php', {cat: cat}, function(data){
+        $('div#maincontent').html(data);
+      });
     });
   });

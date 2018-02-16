@@ -40,7 +40,7 @@ try{
 		if( $query->execute()) {
 			// if insert is succesful, send email with new password
 			$to = $email;
-			$from = "esmeraldatijhoff@yahoo.com";
+			$from = "esmeralda@wijzijncodegorilla.nl";
 			$subject = "Your password has been reset for your blog";
 			$txt = "Hi!\nYour password has been reset for the blog\n Your new password is" .$newpass. "\nPlease visit www.wijzijncodegorilla.nl/esmeraldatijhoff/blog to login\n Greetings from the IT team of Tijhoff inc!";
 			$headers = "From: $from\r\n";

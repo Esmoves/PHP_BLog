@@ -1,6 +1,6 @@
 <?php
 require_once('./include/connection.php');
-require_once('./include/include_oneblog.php');
+require_once('./include/include_reader.php');
 require_once ('./include/include_html.php');
 require_once('./include/include_menu.php');
 

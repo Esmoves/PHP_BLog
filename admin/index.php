@@ -8,23 +8,17 @@ try{
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$email = $_POST['email'];
-		$month = $_POST['month'];
-		$date = $_POST['date'];
-		$year = $_POST['year'];
 
 		// @param string Secure the password with a hash, than save it to database.
 		$pass = $_POST['password'];
 		$hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-	 	$insert = $db->prepare("INSERT INTO bloggers (username, password, email, lastname, firstname, date, month, year)
-			VALUES(:username, :password, :email, :lastname, :firstname, :date, :month, :year) ");
+	 	$insert = $db->prepare("INSERT INTO bloggers (username, password, email, lastname, firstname)
+			VALUES(:username, :password, :email, :lastname, :firstname) ");
 		$insert->bindParam(':username',$username);
 		$insert->bindParam(':password',$hashed_password);
 		$insert->bindParam(':email',$email);
 		$insert->bindParam(':lastname',$lastname);
 		$insert->bindParam(':firstname',$firstname);
-		$insert->bindParam(':date',$date);
-		$insert->bindParam(':month',$month);
-		$insert->bindParam(':year',$year); 
 		$insert->execute();
 
 		$_SESSION['name']=$username;
@@ -84,38 +78,6 @@ try{
 			<input type="text" name="lastname" placeholder="Last Name" /><br><br>
 			<input type="text" name="email" placeholder="example@example.com" /><br><br>
 			<input type="password" name="password" placeholder="password" /><br><br>
-			<select name="date">
-				<option value="DATE">DATE</option>
-				<option value="01">01</option>
-				<option value="02">02</option>
-				<option value="03">03</option>
-			</select>
-			<select name="month">
-				<option value="MONTH">MONTH</option>
-				<option value="JAN">JAN</option>
-				<option value="FEB">FEB</option>
-				<option value="MAR">MAR</option>
-				<option value="APRIL">APRIL</option>
-				<option value="MAY">MAY</option>
-				<option value="JUNE">JUNE</option>
-				<option value="JULY">JULY</option>
-				<option value="AUG">AUG</option>
-				<option value="OCT">OCT</option>
-				<option value="NOV">NOV</option>
-				<option value="DEC">DEC</option>
-			</select>
-			<select name="year">
-				<option value="YEAR">YEAR</option>
-				<option value="2016">2025</option>
-				<option value="2015">2024</option>
-				<option value="2014">2023</option>	
-				<option value="2016">2022</option>
-				<option value="2015">2021</option>
-				<option value="2014">2020</option>
-				<option value="2016">2019</option>
-				<option value="2015">2018</option>
-				<option value="2014">2017</option>
-			</select><br><br>
 			<input type="submit" name="signup" value="SIGN UP" />
 		</form>
 	</div>

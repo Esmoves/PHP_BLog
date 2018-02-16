@@ -195,7 +195,7 @@ table.excerp{
 	width: 500px;
 }
 
-th{
+th, th a{
 	font-family: 'Roboto Mono', monospace;
 	color: #7A6563;
 	background-color: #7FD1B9;

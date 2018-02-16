@@ -81,7 +81,7 @@ function getBloggerbyBlogid($user_id){
   $sql = "SELECT * FROM bloggers WHERE id='$user_id'";
   foreach($db->query($sql) as $row) {
     $username= $row['username'];
-    echo "<em> By " .$username. "</em></th></tr>";
+    echo "<em> By " .$username. "</em>";
   }
   unset($row);
 }
@@ -111,8 +111,7 @@ function getOneBlogFromDB($blog_id){
         echo "<table class='excerp'>";
         echo "<tr><th colspan='1'>" .$row['titel']. "<br />";
         getBloggerbyBlogid($row['user_id']);
-        echo "</th</tr>";
-
+        echo "</th></tr>";
         echo "<tr><td class='category'>categories: ";
         getCategory($row['id']);
         echo "</td></tr>";

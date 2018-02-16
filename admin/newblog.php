@@ -32,7 +32,7 @@
             <!-- Get the categories out of the database to display in a multiple choice.-->
             <select style="width: 200px" id="category" name="category[]" multiple="multiple"> 
               <?php
-                  global $dbServername, $dbUsername, $dbPassword, $dbname, $db;
+                  global $db;
                   $sql = "SELECT * FROM categorie";
                   foreach($db->query($sql) as $row)
                   {  
