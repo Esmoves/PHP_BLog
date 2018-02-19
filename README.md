@@ -64,7 +64,7 @@
 <h2>Resources</h2>
 <p>Checklist and progress recorded on trello: https://trello.com/b/zW2XmbyL<br />
 Demo of this blog on www.wijzijncodegorilla.nl/esmeraldatijhoff/blog/<br />
-* Please login using username PietjeBel and password = password2  *
+
     </p>
 
 <h2>Tools</h2>
