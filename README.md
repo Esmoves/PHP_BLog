@@ -1,10 +1,10 @@
-# clean_blog
+# A blog in PHP
 
 <h1>Description: Allround blog in php/mysql for multiple bloggers.</h1>
 
-<img src="/blog1.png" alt="screenshot of my blog in php">
-<img src="/blog2.png" alt="screenshot of my blog in php">
-<img src="/blog3.png" alt="screenshot of my blog in php">
+<img src="/blog1.png" alt="screenshot of my blog in php" width="400px">
+<img src="/blog2.png" alt="screenshot of my blog in php" width="400px">
+<img src="/blog3.png" alt="screenshot of my blog in php" width="400px">
 
 <h2>Functionality</h2>
 
