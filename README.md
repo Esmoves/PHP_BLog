@@ -2,6 +2,10 @@
 
 <h1>Description: Allround blog in php/mysql for multiple bloggers.</h1>
 
+<img src="/blog1.png" alt="screenshot of my blog in php">
+<img src="/blog2.png" alt="screenshot of my blog in php">
+<img src="/blog3.png" alt="screenshot of my blog in php">
+
 <h2>Functionality</h2>
 
 <h3>Readers</h3>
